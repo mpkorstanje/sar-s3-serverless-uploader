@@ -32,24 +32,20 @@ const getUploadURL = async function() {
   
   const s3Params = {
     Bucket: process.env.UploadBucket,
-    Key:  `${actionId}.jpg`,
-    ContentType: 'image/jpeg' // Update to match whichever content type you need to upload
-    //ACL: 'public-read'      // Enable this setting to make the object publicly readable - only works if the bucket can support public objects
+    Key:  `${actionId}.md`,
+    ContentType: 'text/plain'
   }
 
   console.log('getUploadURL: ', s3Params)
   return new Promise((resolve, reject) => {
     // Get signed URL
     resolve({
-      "statusCode": 200,
+      "statusCode": 307,
       "isBase64Encoded": false,
       "headers": {
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
+        "Location": s3.getSignedUrl('putObject', s3Params),
       },
-      "body": JSON.stringify({
-          "uploadURL": s3.getSignedUrl('putObject', s3Params),
-          "photoFilename": `${actionId}.jpg`
-      })
     })
   })
 }

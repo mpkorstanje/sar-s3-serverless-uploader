@@ -52,7 +52,7 @@ Resources:
           Type: Api
           Properties:
             Path: '/'
-            Method: get
+            Method: put
 
 Outputs:
   S3UploaderFunction:

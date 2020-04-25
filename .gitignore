@@ -1,3 +1,7 @@
+.aws-sam
+samconfig.toml
+packaged.yaml
+.idea
 
 # Created by https://www.gitignore.io/api/osx,node,linux,windows
 
